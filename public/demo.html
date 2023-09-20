@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	
+	<p 
+		id="paragraph"
+		draggable="true"
+		ondragstart="dragStartHandler(event)"
+	>Drag this text and drop onto the box</p>
+
+	<div
+		ondragover="dropOverHandler(event)"
+		ondrop="dropHandler(event)"
+		ondragleave="dropLeaveHandler(event)"
+		style="
+			width: 300px;
+			height: 100px;
+			border: 1px solid black;
+		"
+	></div>
+
+
+<script>
+	const dragStartHandler = (evt) => {
+		evt.dataTransfer.setData('paragraph', evt.target.id)
+	}
+	const dropOverHandler = (evt) => {
+		evt.preventDefault() 		// without it ondrop not work
+
+		evt.target.style.borderColor = 'red'
+	}
+	const dropLeaveHandler = (evt) => {
+		evt.target.style.borderColor = 'black'
+	}
+
+	const dropHandler = (evt) => {
+		const pId = evt.dataTransfer.getData('paragraph')
+		const pElement = document.getElementById( pId )
+		evt.target.appendChild(pElement)
+
+		dropLeaveHandler(evt)
+	}
+</script>
+
+</body>
+</html>

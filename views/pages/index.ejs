@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TailWind CSS</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+	<%-include('../components/input') %>
+
+	<% for(user of users) { %>
+		<p class="border border-red-500 mb-2">User name: <%=user.name %></p>
+	<% } %>
+
+	<main class="w-screen h-screen flex justify-center items-center bg-slate-100">
+
+
+		<section class="w-3/4 h-1/2 bg-white border border-slate-500 
+			grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6
+		">
+				<div class="bg-gray-200 flex justify-center items-center">one</div>
+				<div class="bg-pink-200 flex justify-center items-center">two</div>
+				<div class="bg-blue-200 flex justify-center items-center">three</div>
+				<div class="bg-orange-200 flex justify-center items-center">four</div>
+				<div class="bg-sky-200 flex justify-center items-center">five</div>
+				<div class="bg-cyan-200 flex justify-center items-center">six</div>
+		</section>
+	</main>
+
+
+	
+	<script src="/client.js"></script>
+</body>
+</html>

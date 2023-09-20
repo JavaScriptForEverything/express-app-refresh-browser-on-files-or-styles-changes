@@ -1,9 +1,7 @@
 const express = require('express')
 const path = require('path')
-
 const liveReload = require('livereload')
 const connectLiveReload = require('connect-livereload')
-
 
 const publicDir = path.join( process.cwd(), 'public')
 
@@ -22,8 +20,15 @@ app.use( connectLiveReload() )
 app.use( express.static( publicDir ) )
 app.set('view engine', 'ejs')
 
-app.get('/', (req, res) => {
-	res.render('index')
+app.get('/', (_req, res) => {
+	const users = [
+		{ id: 1, name: 'riajul', email: 'riajul@gmail.com' },
+		{ id: 2, name: 'rakib', email: 'rakib@yahoo.com' },
+	]
+	res.render('./pages/index', { users })
+})
+app.get('/about', (_req, res) => {
+	res.render('pages/about')
 })
 
 const PORT = process.env.PORT || 3000

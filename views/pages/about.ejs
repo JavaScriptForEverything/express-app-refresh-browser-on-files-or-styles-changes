@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+
+<p 
+	id="paragraph" 
+	draggable="true" 
+	ondragstart="dragStartHandler(event)"
+>
+	This is a draggable paragraph. Drag this element into the rectangle.
+</p>
+
+<div 
+	ondrop="dropHandler(event)" 
+	ondragover="allowDrop(event)"
+	style="
+		width: 350px;
+		height: 70px;
+		padding: 10px;
+		border: 1px solid #aaaaaa;
+	"
+></div>
+<script>
+
+const allowDrop = (ev) => {
+  ev.preventDefault();
+}
+const dragStartHandler = (ev) => ev.dataTransfer.setData("paragraph", ev.target.id)
+
+const dropHandler = (ev) => {
+	console.log(ev)
+  let data = ev.dataTransfer.getData("paragraph");
+	const p = document.getElementById(data)
+  ev.target.appendChild( p );
+}
+</script>
+</body>
+</html>
